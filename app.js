@@ -10,7 +10,7 @@ dbconnection();
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use('/postapi',postRoutes)
-app.get('/',(res,req)=>{
+app.get('/',(req,res)=>{
     res.send("Post Application")
 })
 
@@ -20,3 +20,20 @@ app.listen(process.env.PORT, err=>{
     console.log(`The server is running ${process.env.PORT}`);
     
 })
+
+
+/*
+    UserSchema.js
+        username
+        password
+
+    
+    UserController.js
+        registerUser
+        loginUser        optional
+
+    UserRouter.js
+        register
+
+
+*/
