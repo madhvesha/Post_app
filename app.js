@@ -1,6 +1,6 @@
 // const { log } = require('console')
 const express = require('express')
-const postRoutes=require('./Router/postRouter')
+const {postRoutes,userRoutes}=require('./Router/postRouter')
 require('dotenv').config()
 const { dbconnection } = require('./config/db');
 const { createPost } = require('./Controller/postController');
@@ -10,6 +10,7 @@ dbconnection();
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use('/postapi',postRoutes)
+app.use('/userapi',userRoutes)
 app.get('/',(req,res)=>{
     res.send("Post Application")
 })
@@ -23,17 +24,17 @@ app.listen(process.env.PORT, err=>{
 
 
 /*
-    UserSchema.js
-        username
-        password
+    !UserSchema.js
+       ! username
+       ! password
 
     
-    UserController.js
-        registerUser
+    ?UserController.js
+       ! registerUser
         loginUser        optional
 
-    UserRouter.js
-        register
+    ?UserRouter.js
+     ?   register
 
 
 */
