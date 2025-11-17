@@ -1,9 +1,8 @@
-// const { log } = require('console')
 const express = require('express')
-const {postRoutes,userRoutes}=require('./Router/postRouter')
+const postRoutes=require('./Router/postRouter')
+const userRoutes=require('./Router/userRouter')
 require('dotenv').config()
 const { dbconnection } = require('./config/db');
-const { createPost } = require('./Controller/postController');
 const app = express()
 dbconnection();
 
