@@ -7,3 +7,4 @@ exports.registerNewUser=async(req,res)=>{
     .json({success:true,message:"User Registered Successfully",payload})
 }
 
+
