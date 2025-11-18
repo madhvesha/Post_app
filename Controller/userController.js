@@ -16,6 +16,7 @@ exports.loginUser=async(req,res)=>{
     }
     else{
         const user=await userSchema.findOne({email}).select("+password")
+        // console.log(user)
         if(!user){
             res.status(400)
             .json({success:false,message:"No User Found"})
