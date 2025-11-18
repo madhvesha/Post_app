@@ -1,6 +1,7 @@
 const mongoose=require('mongoose')
 const {Schema}=require('mongoose')
 const bcrypt =require('bcrypt')
+const jwt=require('jsonwebtoken')
 
 const userSchema= new Schema({
     email:{
@@ -29,5 +30,16 @@ userSchema.pre("save",async function(){
 userSchema.methods.comparePasswords=async function (pass){
     return await bcrypt.compare(pass,this.password)
 }
+
+userSchema.methods.generateToken= async function () {
+    return await jwt.sign(
+        {_id:this._id},
+        process.env.JWT_SECRET_KEY,
+        {expiresIn:"2m"}
+
+    );
+}
+
+
 
 module.exports=mongoose.model("User",userSchema)

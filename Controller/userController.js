@@ -16,7 +16,6 @@ exports.loginUser=async(req,res)=>{
     }
     else{
         const user=await userSchema.findOne({email}).select("+password")
-        // console.log(user)
         if(!user){
             res.status(400)
             .json({success:false,message:"No User Found"})
@@ -24,7 +23,9 @@ exports.loginUser=async(req,res)=>{
         else{
             let isMatch=await user.comparePasswords(password)
             if(isMatch){
-                res.status(200).json({success:false,message:"Login Successful"})
+
+                let token= await user.generateToken()
+                res.status(200).json({success:true,message:"Login Successful" ,token})
             }
             else{
                 res.status(400)
